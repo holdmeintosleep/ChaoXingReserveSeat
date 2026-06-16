@@ -1,0 +1,65 @@
+{
+    "_comment": "roomid 可选值: 8740(二楼208室-考研学习室), 6913(其他图书馆)",
+    "signin": {
+        "_comment": "签到模块配置",
+        "enabled": true,
+        "check_interval": 60,
+        "location": {
+            "_comment": "模拟GPS定位，用于绕过位置检查。经纬度请填写实际图书馆坐标",
+            "latitude": 30.0,
+            "longitude": 120.0,
+            "address": "图书馆"
+        }
+    },
+    "reserve": [
+        {
+            "username": "15367563648",
+            "password": "Slfyc2004620@.",
+            "time": ["10:30","14:15"],
+            "roomid": "6913",
+            "seatid": ["011"],
+            "_comment": "reserveId 无需手动填写，自动预约成功后会自动保存到 reservations.json",
+            "daysofweek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        },
+        {
+            "username": "15367563648",
+            "password": "Slfyc2004620@.",
+            "time": ["14:30","18:15"],
+            "roomid": "6913",
+            "seatid": ["011"],
+            "daysofweek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        },
+        {
+            "username": "15367563648",
+            "password": "Slfyc2004620@.",
+            "time": ["18:30","22:30"],
+            "roomid": "6913",
+            "seatid": ["011"],
+            "daysofweek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        },
+        {
+            "username": "17267130137",
+            "password": "Slfyc2004620@.",
+            "time": ["10:30","14:15"],
+            "roomid": "6913",
+            "seatid": ["011"],
+            "daysofweek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        },
+        {
+            "username": "17267130137",
+            "password": "Slfyc2004620@.",
+            "time": ["14:30","18:15"],
+            "roomid": "6913",
+            "seatid": ["011"],
+            "daysofweek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        },
+        {
+            "username": "17267130137",
+            "password": "Slfyc2004620@.",
+            "time": ["18:30","22:30"],
+            "roomid": "6913",
+            "seatid": ["011"],
+            "daysofweek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        }
+    ]
+}
