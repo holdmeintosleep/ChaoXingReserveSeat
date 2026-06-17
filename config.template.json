@@ -1,0 +1,21 @@
+{
+    "signin": {
+        "enabled": true,
+        "location": {
+            "latitude": 30.0,
+            "longitude": 120.0,
+            "address": "图书馆"
+        },
+        "interval": 300
+    },
+    "reserve": [
+        {
+            "username": "你的学号或手机号",
+            "password": "你的密码",
+            "time": ["10:30", "14:15"],
+            "roomid": "房间ID",
+            "seatid": ["座位号"],
+            "daysofweek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+        }
+    ]
+}
