@@ -1,0 +1,16 @@
+﻿{
+  "appId": "com.chaoxing.reserve",
+  "appName": "预约时间管理",
+  "webDir": "dist",
+  "server": {
+    "url": "http://localhost:5000",
+    "cleartext": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": true,
+      "backgroundColor": "#ffffff"
+    }
+  }
+}

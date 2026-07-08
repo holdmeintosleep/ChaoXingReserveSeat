@@ -1,0 +1,88 @@
+﻿﻿﻿﻿﻿﻿name: 超星自动预约与签到
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 14 * * 1-5'
+    - cron: '30 5 * * 1-5'
+    - cron: '30 15 * * 1-5'
+    - cron: '0 22 * * 0-4'
+env:
+  PYTHON_VERSION: '3.10'
+jobs:
+  auto-reserve:
+    name: 自动预约座位
+    runs-on: ubuntu-latest
+    if: github.event.schedule != null && contains(github.event.schedule, '0 22')
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run: |
+          pip install requests
+      - name: Run auto reserve
+        env:
+          USERNAMES: ${{ secrets.USERNAMES }}
+          PASSWORDS: ${{ secrets.PASSWORDS }}
+        run: |
+          python main.py -m reserve -a
+  auto-signin-morning:
+    name: 上午时段签到
+    runs-on: ubuntu-latest
+    if: github.event.schedule != null && contains(github.event.schedule, '30 5')
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run: |
+          pip install requests
+      - name: Run morning signin
+        env:
+          USERNAMES: ${{ secrets.USERNAMES }}
+          PASSWORDS: ${{ secrets.PASSWORDS }}
+        run: |
+          python main.py -m signin -a
+  auto-signin-afternoon:
+    name: 下午时段签到
+    runs-on: ubuntu-latest
+    if: github.event.schedule != null && contains(github.event.schedule, '30 15')
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run: |
+          pip install requests
+      - name: Run afternoon signin
+        env:
+          USERNAMES: ${{ secrets.USERNAMES }}
+          PASSWORDS: ${{ secrets.PASSWORDS }}
+        run: |
+          python main.py -m signin -a
+  auto-signin-evening:
+    name: 晚上时段签到
+    runs-on: ubuntu-latest
+    if: github.event.schedule != null && contains(github.event.schedule, '0 14')
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run: |
+          pip install requests
+      - name: Run evening signin
+        env:
+          USERNAMES: ${{ secrets.USERNAMES }}
+          PASSWORDS: ${{ secrets.PASSWORDS }}
+        run: |
+          python main.py -m signin -a

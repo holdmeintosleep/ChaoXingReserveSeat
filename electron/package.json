@@ -1,0 +1,84 @@
+{
+  "name": "chaoxing-reserve-seat",
+  "version": "1.0.0",
+  "description": "超星学习通座位预约与签到管理桌面应用",
+  "main": "main.js",
+  "scripts": {
+    "start": "npx electron .",
+    "dev": "ELECTRON_START_URL=http://localhost:5173 npx electron .",
+    "build": "npx electron-builder",
+    "build:win": "npx electron-builder --win",
+    "build:dir": "npx electron-builder --dir",
+    "dist": "npm run build:win"
+  },
+  "keywords": [
+    "超星",
+    "座位预约",
+    "学习通",
+    "签到"
+  ],
+  "author": "ChaoXingReserveSeat",
+  "license": "MIT",
+  "dependencies": {
+    "electron-updater": "^6.5.0"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.chaoxing.reserveseat",
+    "productName": "超星座位预约",
+    "directories": {
+      "output": "../dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "icons/**/*",
+      "../frontend/dist/**/*",
+      "../backend/**/*",
+      "../utils/**/*",
+      "../config.template.json",
+      "../main.py"
+    ],
+    "extraResources": [
+      {
+        "from": "../",
+        "to": ".",
+        "filter": [
+          "**/*.py",
+          "config.template.json"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "icons/app.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "icons/app.ico",
+      "uninstallerIcon": "icons/app.ico",
+      "installerHeaderIcon": "icons/app.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "超星座位预约"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "your-github-username",
+      "repo": "ChaoXingReserveSeat",
+      "private": false
+    }
+  }
+}

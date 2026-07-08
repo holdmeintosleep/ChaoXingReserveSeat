@@ -54,7 +54,10 @@ def login_and_reserve(users, usernames, passwords, action, success_list=None):
                 reserve_next_day=RESERVE_NEXT_DAY,
             )
             s.get_login_status()
-            s.login(username, password)
+            login_result = s.login(username, password)
+            if not login_result[0]:
+                logging.error(f"Login failed for user {username}, skipping reservation")
+                continue
             s.requests.headers.update({"Host": "office.chaoxing.com"})
             suc = s.submit(times, roomid, seatid, action, username)
             success_list[index] = suc
@@ -123,7 +126,10 @@ def debug(users, action=False):
             reserve_next_day=RESERVE_NEXT_DAY,
         )
         s.get_login_status()
-        s.login(username, password)
+        login_result = s.login(username, password)
+        if not login_result[0]:
+            logging.error(f"Login failed for user {username}, skipping reservation")
+            continue
         s.requests.headers.update({"Host": "office.chaoxing.com"})
         s.submit(times, roomid, seatid, action, username)
 

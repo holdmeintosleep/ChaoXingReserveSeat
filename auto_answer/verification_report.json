@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-07-01 22:39:35",
+  "total_files": 10,
+  "passed": 10,
+  "failed": 0,
+  "pass_rate": 100.0,
+  "results": [
+    "✅ anti_detection.py: 语法正确",
+    "   → 类: AntiDetection; 函数: __init__, random_delay, human_mouse_move, _generate_bezier_curve, random_scroll...",
+    "✅ question_parser.py: 语法正确",
+    "   → 类: QuestionParser; 函数: __init__, parse_page, _parse_single_question, _detect_question_type, _parse_options...",
+    "✅ search_api.py: 语法正确",
+    "   → 类: SearchAPI; 函数: __init__, _init_local_database, search_answer, _search_via_api, _search_via_local...",
+    "✅ browser_automation.py: 语法正确",
+    "   → 类: BrowserAutomation; 函数: __init__, init_browser, _configure_chrome_options, _configure_edge_options, bypass_automation_detection...",
+    "✅ main.py: 语法正确",
+    "   → 函数: load_config, save_config, configure_login, configure_browser, configure_delay...",
+    "✅ config.json: JSON格式正确",
+    "   → 配置项: login, browser, delay, anti_detection, search_api...",
+    "✅ run_tests.py: 语法正确",
+    "   → 函数: run_tests, generate_report",
+    "✅ tests/test_anti_detection_simple.py: 语法正确",
+    "   → 类: TestAntiDetection; 函数: setUp, test_random_delay_normal, test_random_delay_boundary, test_bezier_curve_generation, test_fake_modify_probability...",
+    "✅ tests/test_question_parser_simple.py: 语法正确",
+    "   → 类: TestQuestionParser; 函数: setUp, test_single_choice_parsing, test_multiple_choice_parsing, test_judge_parsing, test_fill_blank_parsing...",
+    "✅ tests/test_search_api_simple.py: 语法正确",
+    "   → 类: TestSearchAPI; 函数: setUp, test_local_database_search, test_local_database_empty, test_add_to_local_database, test_get_local_statistics..."
+  ]
+}

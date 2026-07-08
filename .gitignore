@@ -39,6 +39,7 @@ Thumbs.db
 
 # Project specific
 *.log
+config.json
 config.local.json
 reservations.json
 cookies.json

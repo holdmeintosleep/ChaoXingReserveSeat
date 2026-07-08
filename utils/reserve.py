@@ -89,6 +89,7 @@ class reserve:
         self.requests.get(url=self.login_page, verify=False)
 
     def login(self, username, password):
+        plain_username = username
         username = AES_Encrypt(username)
         password = AES_Encrypt(password)
         parm = {
@@ -101,13 +102,13 @@ class reserve:
         jsons = self.requests.post(url=self.login_url, params=parm, verify=False)
         obj = jsons.json()
         if obj["status"]:
-            logging.info(f"User {username} login successfully")
+            logging.info(f"User {plain_username} login successfully")
             return (True, "")
         else:
-            logging.info(
-                f"User {username} login failed. Please check you password and username! "
+            logging.error(
+                f"User {plain_username} login failed: {obj.get('msg2', 'Unknown error')}"
             )
-            return (False, obj["msg2"])
+            return (False, obj.get("msg2", ""))
 
     # extra: get roomid
     def roomid(self, encode):
@@ -257,8 +258,8 @@ class reserve:
     ):
         delta_day = 1 if self.reserve_next_day else 0
         day = datetime.date.today() + datetime.timedelta(
-            days=0 + delta_day
-        )  # 预约今天，修改days=1表示预约明天
+            days=delta_day
+        )
         if action:
             day = datetime.date.today() + datetime.timedelta(
                 days=1 + delta_day
@@ -288,7 +289,8 @@ class reserve:
         
         # 如果预约成功，保存预约ID
         if result.get("success") and username:
-            reserve_id = str(result.get("data", {}).get("id", "") or 
+            reserve_id = str(result.get("data", {}).get("seatReserve", {}).get("id", "") or
+                           result.get("data", {}).get("id", "") or 
                            result.get("data", {}).get("reserveId", "") or
                            result.get("id", "") or result.get("reserveId", ""))
             if reserve_id:
